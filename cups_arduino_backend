@@ -1,0 +1,5 @@
+#!/bin/bash
+# Have debug info in /var/log/cups/error_log:
+# Output "device discovery" information on stdout:
+echo "INFO: lo logreeee">&2
+
