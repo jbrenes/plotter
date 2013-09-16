@@ -1,43 +1,56 @@
 #include <Stepper.h>
-const int stepsPerRevolution = 4;  // Stepper has 400 revolutions
-Stepper myStepper(stepsPerRevolution, 3,11,12,13); // See reference for ARDUMOTO- use pins 3,11,12,13
-int pinDirZa=7;
-int pinDirZb=8;
-int pinPwmZa = 9;
-int pinPwmZb = 6;
+const int stepsPerRevolution = 100; 
+Stepper yStepper(stepsPerRevolution, 3,11,12,13); 
+Stepper xStepper(stepsPerRevolution, 7,8,9,6);
+Stepper zStepper(stepsPerRevolution,2,4,5,10);
+String commandAux;
+int xPosition=0;
+int yPosition=0;
+int zPosition=0;
 int speedZ=50;
 void setup() {
-  myStepper.setSpeed(1000);  // set the speed at 70 rpm:
-  // 70 is a nice fluid move  60-70 rpm, and a nice slow rotation could be 20
-  pinMode(pinDirZa,OUTPUT);
-  pinMode(pinDirZb,OUTPUT);
-  pinMode(pinPwmZa,OUTPUT);
-  pinMode(pinPwmZb,OUTPUT);
+  Serial.begin(9600);
+  moveToStartupPosition();
+  //yStepper.setSpeed(70);  
+  //xStepper.setSpeed(70);
+  //zStepper.setSpeed(70);
+  Serial.println("Ready\n");
+  
 }
 
+void moveToStartupPosition(){
+  Serial.println("Moving to startup position");
+  
+}
+
+void moveToYPosition(int y){
+
+}
+
+void moveToXPosition(int x){
+
+}
+
+void moveToZPosition(int z){
+
+}
 void loop() {
-    myStepper.step(stepsPerRevolution); // Do a full revolution, 400 steps
-    digitalWrite(pinDirZa,HIGH);
-    digitalWrite(pinPwmZa,HIGH);
-    delay(speedZ);
-    digitalWrite(pinPwmZa,LOW);
-    digitalWrite(pinDirZa,LOW);
+    String command="";
+    char character;
+    while(Serial.available()) {
+      character = Serial.read();
+      commandAux.concat(character);
+      if(character=='\n'){
+        command=commandAux;
+      }
+      Serial.flush();
+    }
+
+    if (command != "") {
+      Serial.println(command);
+      command="";
+    }
+    //Serial.println("Sali");
+   
     
-    digitalWrite(pinDirZb,HIGH);
-    digitalWrite(pinPwmZb,HIGH);
-    delay(speedZ);
-    digitalWrite(pinPwmZb,LOW);
-    digitalWrite(pinDirZb,LOW);
-    
-    
-    digitalWrite(pinPwmZa,HIGH);
-    delay(speedZ);
-    digitalWrite(pinPwmZa,LOW);
-    
-    digitalWrite(pinPwmZb,HIGH);
-    delay(speedZ);
-    digitalWrite(pinPwmZb,LOW);
-    
-    
-//delay(1000);
 }
