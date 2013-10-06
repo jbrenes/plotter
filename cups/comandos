@@ -1,0 +1,2 @@
+gzip /usr/share/cups/model/arduinocolor.ppd 
+lpadmin -p arduinoprinter -v arduino:/var/spool/pdf/ -D "Print with arduino plotter" -E -P /usr/share/cups/model/arduinocolor.ppd.gz

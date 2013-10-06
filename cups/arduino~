@@ -1,0 +1,8 @@
+#!/bin/bash
+
+DISPLAY=:0
+echo "WARN: ejecutando" 1>&2
+
+sudo -u juan  "gedit" 1>&2 &
+
+echo "WARN: finalizando" 1>&2

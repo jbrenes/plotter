@@ -1,0 +1,9 @@
+#!/bin/bash
+
+LOG=/var/log/arduinoplotter
+DISPLAY=:0
+echo "WARN: ejecutando" >> $LOG
+
+sudo -u juan  "gedit" 1>>$LOG &
+
+echo "WARN: finalizando" >> $LOG
